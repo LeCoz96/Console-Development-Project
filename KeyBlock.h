@@ -4,7 +4,7 @@ class KeyBlock :
     public StaticObject
 {
 public:
-    KeyBlock(int x, int y, SDL_Renderer* renderer, Map* map);
+    KeyBlock(int x, int y, SDL_Renderer* renderer, LevelRenderer* level);
     ~KeyBlock() = default;
     void Render()override;
 private:

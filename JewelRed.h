@@ -4,7 +4,7 @@ class JewelRed :
     public StaticObject
 {
 public:
-    JewelRed(int x, int y, SDL_Renderer* renderer, Map* map);
+    JewelRed(int x, int y, SDL_Renderer* renderer, LevelRenderer* level);
     ~JewelRed() = default;
     void Render()override;
 private:

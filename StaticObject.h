@@ -4,7 +4,7 @@ class StaticObject :
     public GameObject
 {
 public:
-    StaticObject(int x, int y, SDL_Renderer* renderer, Map* map);
+    StaticObject(int x, int y, SDL_Renderer* renderer, LevelRenderer* level);
     ~StaticObject() = default;
     void Update()override;
 };

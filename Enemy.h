@@ -6,7 +6,7 @@ class Enemy :
     public MovingObject
 {
 public:
-    Enemy(int x, int y, int speed, SDL_Renderer* renderer, Map* map);
+    Enemy(int x, int y, int speed, SDL_Renderer* renderer, LevelRenderer* level);
     ~Enemy() = default;
     
     void Patrol();

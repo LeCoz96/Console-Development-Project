@@ -1,8 +1,8 @@
 #include "JewelBlueBlock.h"
 #include "Image.h"
 
-JewelBlueBlock::JewelBlueBlock(int x, int y, SDL_Renderer* renderer, Map* map)
-	: StaticObject{ x, y, renderer, map }
+JewelBlueBlock::JewelBlueBlock(int x, int y, SDL_Renderer* renderer, LevelRenderer* level)
+	: StaticObject{ x, y, renderer, level }
 {
 	m_jewelBlueBlock = Image::GetTexture("Assets/Collectable/BlueJewelBlock.png", renderer);
 }

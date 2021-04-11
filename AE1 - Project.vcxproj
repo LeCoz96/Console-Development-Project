@@ -154,6 +154,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="AreaLoader.cpp" />
     <ClCompile Include="Audio.cpp" />
     <ClCompile Include="Checks.cpp" />
     <ClCompile Include="Enemy.cpp" />
@@ -167,10 +168,8 @@
     <ClCompile Include="JewelRedBlock.cpp" />
     <ClCompile Include="Key.cpp" />
     <ClCompile Include="KeyBlock.cpp" />
-    <ClCompile Include="LevelLoader.cpp" />
     <ClCompile Include="LevelRenderer.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Map.cpp" />
     <ClCompile Include="MessageHandler.cpp" />
     <ClCompile Include="MovingObject.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -180,6 +179,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
+    <ClInclude Include="AreaLoader.h" />
     <ClInclude Include="Audio.h" />
     <ClInclude Include="Checks.h" />
     <ClInclude Include="Enemy.h" />
@@ -193,9 +193,7 @@
     <ClInclude Include="JewelRedBlock.h" />
     <ClInclude Include="Key.h" />
     <ClInclude Include="KeyBlock.h" />
-    <ClInclude Include="LevelLoader.h" />
     <ClInclude Include="LevelRenderer.h" />
-    <ClInclude Include="Map.h" />
     <ClInclude Include="MemoryManager.h" />
     <ClInclude Include="MessageHandler.h" />
     <ClInclude Include="MovingObject.h" />

@@ -14,7 +14,7 @@ class Player :
 	public MovingObject
 {
 public:
-	Player(int x, int y, int speed, SDL_Renderer* renderer, Map* map);
+	Player(int x, int y, int speed, SDL_Renderer* renderer, LevelRenderer* level);
 	~Player();
 
 	void TakeDamage();

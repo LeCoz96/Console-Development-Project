@@ -1,8 +1,8 @@
 #include "JewelRed.h"
 #include "Image.h"
 
-JewelRed::JewelRed(int x, int y, SDL_Renderer* renderer, Map* map)
-	: StaticObject{ x, y, renderer, map }
+JewelRed::JewelRed(int x, int y, SDL_Renderer* renderer, LevelRenderer* level)
+	: StaticObject{ x, y, renderer, level }
 {
 	m_jewelRed = Image::GetTexture("Assets/Collectable/JewelRed.png", renderer);
 }

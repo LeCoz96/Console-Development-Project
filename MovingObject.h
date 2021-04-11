@@ -4,7 +4,7 @@ class MovingObject :
     public GameObject
 {
 public:
-    MovingObject(int x, int y, int speed, SDL_Renderer* renderer, Map* map);
+    MovingObject(int x, int y, int speed, SDL_Renderer* renderer, LevelRenderer* level);
     MovingObject() = default;
     ~MovingObject() = default;
 

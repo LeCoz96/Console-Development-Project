@@ -12,7 +12,7 @@
 
 #endif
 
-class Map;
+class LevelRenderer;
 class Exit;
 
 class Key;
@@ -44,7 +44,7 @@ private:
 	SDL_Renderer* m_renderer{ nullptr };
 	SDL_Texture* m_texture{ nullptr };
 
-	Map* m_map{ nullptr };
+	LevelRenderer* m_level{ nullptr };
 	Exit* m_exit{ nullptr };
 
 	Key* m_key{ nullptr };

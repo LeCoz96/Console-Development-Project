@@ -1,5 +1,6 @@
 #include "Renderer.h"
 #include "Map.h"
+#include "LevelRenderer.h"
 #include "Exit.h"
 #include "Key.h"
 #include "KeyBlock.h"
@@ -113,10 +114,10 @@ Renderer::~Renderer()
 		delete m_exit;
 		m_exit = nullptr;
 	}
-	if (nullptr != m_map)
+	if (nullptr != m_level)
 	{
-		delete m_map;
-		m_map = nullptr;
+		delete m_level;
+		m_level = nullptr;
 	}
 	if (nullptr != m_renderer)
 	{
@@ -134,22 +135,22 @@ Renderer::~Renderer()
 
 void Renderer::RenderGameObjects()
 {
-	m_map = new Map(m_renderer, 32);
+	m_level = new LevelRenderer(m_renderer, 32);
 
-	m_exit = new Exit(416, 32, m_renderer, m_map);
+	m_exit = new Exit(416, 32, m_renderer, m_level);
 
-	m_keyBlock = new KeyBlock(32, 32, m_renderer, m_map);
-	m_listOfKey.push_back(new Key(96, 32, m_renderer, m_map));
+	m_keyBlock = new KeyBlock(32, 32, m_renderer, m_level);
+	m_listOfKey.push_back(new Key(96, 32, m_renderer, m_level));
 
-	m_jewelBlueBlock = new JewelBlueBlock(160, 32, m_renderer, m_map);
-	m_listOfJewelBlue.push_back(new JewelBlue(224, 32, m_renderer, m_map));
+	m_jewelBlueBlock = new JewelBlueBlock(160, 32, m_renderer, m_level);
+	m_listOfJewelBlue.push_back(new JewelBlue(224, 32, m_renderer, m_level));
 
-	m_jewelRedBlock = new JewelRedBlock(288, 32, m_renderer, m_map);
-	m_listOfJewelRed.push_back(new JewelRed(352, 32, m_renderer, m_map));
+	m_jewelRedBlock = new JewelRedBlock(288, 32, m_renderer, m_level);
+	m_listOfJewelRed.push_back(new JewelRed(352, 32, m_renderer, m_level));
 
-	m_listOfEnemy.push_back(new Enemy(480, 32, 2, m_renderer, m_map));
+	m_listOfEnemy.push_back(new Enemy(480, 32, 2, m_renderer, m_level));
 
-	m_player = new Player(544, 32, 1, m_renderer, m_map);
+	m_player = new Player(544, 32, 1, m_renderer, m_level);
 	m_UI = new UI();
 }
 
@@ -202,11 +203,11 @@ void Renderer::ClearAndPresent()
 {
 	SDL_RenderClear(m_renderer);
 
-	m_map->RenderMap();
+	m_level->RenderLevel();
 
 	m_exit->Render();
 
- 	m_player->Render();
+		m_player->Render();
 
 	m_keyBlock->Render();
 	for (size_t i = 0; i < m_listOfKey.size(); i++)

@@ -1,8 +1,8 @@
 #include "Key.h"
 #include"Image.h"
 
-Key::Key(int x, int y, SDL_Renderer* renderer, Map* map)
-	: StaticObject{ x, y, renderer, map }
+Key::Key(int x, int y, SDL_Renderer* renderer, LevelRenderer* level)
+	: StaticObject{ x, y, renderer, level }
 {
 	m_key = Image::GetTexture("Assets/Collectable/SilverKey.png", renderer);
 }

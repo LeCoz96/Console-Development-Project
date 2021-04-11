@@ -3,12 +3,12 @@
 #include<vector>
 #include<string>
 
-class Map;
+class LevelRenderer;
 
 class GameObject
 {
 public:
-	GameObject(int x, int y, SDL_Renderer* renderer, Map* map);
+	GameObject(int x, int y, SDL_Renderer* renderer, LevelRenderer* level);
 	GameObject() = default;
 	~GameObject() = default;
 
@@ -28,7 +28,7 @@ protected:
 	SDL_Renderer* m_renderer{ nullptr };
 	SDL_Texture* m_texture{ nullptr };
 
-	Map* m_map{ nullptr };
+	LevelRenderer* m_level{ nullptr };
 	int m_xPos, m_yPos;
 	int m_blockSize;
 

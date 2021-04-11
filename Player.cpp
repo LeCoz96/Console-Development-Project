@@ -2,8 +2,8 @@
 #include "Image.h"
 #include "Input.h"
 
-Player::Player(int x, int y, int speed, SDL_Renderer* renderer, Map* map)
-	: MovingObject{ x, y, speed, renderer, map }
+Player::Player(int x, int y, int speed, SDL_Renderer* renderer, LevelRenderer* level)
+	: MovingObject{ x, y, speed, renderer, level }
 {
 	m_lives = 5;
 	m_blueJewels, m_redJewels, m_keys = 0;

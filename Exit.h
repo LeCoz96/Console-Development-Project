@@ -4,7 +4,7 @@ class Exit :
     public StaticObject
 {
 public:
-    Exit(int x, int y, SDL_Renderer* renderer, Map* map);
+    Exit(int x, int y, SDL_Renderer* renderer, LevelRenderer* level);
     ~Exit() = default;
     void Render()override;
 private:

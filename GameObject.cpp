@@ -1,15 +1,15 @@
 #include"GameObject.h"
-#include"Map.h"
+#include"LevelRenderer.h"
 #include"Image.h"
 
-GameObject::GameObject(int x, int y, SDL_Renderer* renderer, Map* map)
-	: m_xPos{ x }, m_yPos{ y }, m_renderer{ renderer }, m_map{ map }
+GameObject::GameObject(int x, int y, SDL_Renderer* renderer, LevelRenderer* level)
+	: m_xPos{ x }, m_yPos{ y }, m_renderer{ renderer }, m_level{ level }
 {
 	m_currentFrame = 0;
 	m_animationSpeed = 0;
 	m_imageSize = 2;
 
-	m_blockSize = m_map->GetBlockSize();
+	m_blockSize = m_level->GetBlockSize();
 
 	m_sourceRect.w = m_destRect.w = 32;
 	m_sourceRect.h = m_destRect.h = 32;

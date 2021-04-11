@@ -1,8 +1,8 @@
 #include "Enemy.h"
 #include"Image.h"
 
-Enemy::Enemy(int x, int y, int speed, SDL_Renderer* renderer, Map* map)
-	: MovingObject{ x, y, speed, renderer, map }
+Enemy::Enemy(int x, int y, int speed, SDL_Renderer* renderer, LevelRenderer* level)
+	: MovingObject{ x, y, speed, renderer, level }
 {
 	m_currentTimer = 0;
 	m_jumpInterval = 480;

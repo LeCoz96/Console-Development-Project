@@ -4,7 +4,7 @@ class Key :
     public StaticObject
 {
 public:
-    Key(int x, int y, SDL_Renderer* renderer, Map* map);
+    Key(int x, int y, SDL_Renderer* renderer, LevelRenderer* level);
     ~Key() = default;
     void Render()override;
 private:

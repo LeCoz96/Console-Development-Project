@@ -4,7 +4,7 @@ class JewelBlueBlock :
     public StaticObject
 {
 public:
-    JewelBlueBlock(int x, int y, SDL_Renderer* renderer, Map* map);
+    JewelBlueBlock(int x, int y, SDL_Renderer* renderer, LevelRenderer* level);
     ~JewelBlueBlock() = default;
     void Render()override;
 private:

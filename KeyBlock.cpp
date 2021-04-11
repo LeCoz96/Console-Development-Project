@@ -1,8 +1,8 @@
 #include "KeyBlock.h"
 #include "Image.h"
 
-KeyBlock::KeyBlock(int x, int y, SDL_Renderer* renderer, Map* map)
-	: StaticObject{ x, y, renderer, map }
+KeyBlock::KeyBlock(int x, int y, SDL_Renderer* renderer, LevelRenderer* level)
+	: StaticObject{ x, y, renderer, level }
 {
 	m_keyBlock = Image::GetTexture("Assets/Collectable/KeyBlock.png", renderer);
 }
