@@ -9,6 +9,7 @@ enum PlayerStates
 };
 
 class Input;
+class MessageHandler;
 
 class Player :
 	public MovingObject
@@ -35,6 +36,7 @@ public:
 
 private:
 	Input* m_input{ nullptr };
+	MessageHandler* m_message{ nullptr };
 
 	SDL_Texture* m_idle;
 
@@ -44,7 +46,7 @@ private:
 	std::vector<SDL_Texture*> m_listOfPlayerRight;
 
 	int m_lives;
-	int m_blueJewels, m_redJewels, m_keys;
+	int m_blueJewels, m_redJewels, m_keys{ 0 };
 
 	bool m_isIdle = true;
 };

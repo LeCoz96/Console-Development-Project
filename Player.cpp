@@ -1,16 +1,17 @@
 #include "Player.h"
 #include "Image.h"
 #include "Input.h"
+#include "MessageHandler.h"
 
 Player::Player(int x, int y, int speed, SDL_Renderer* renderer, LevelRenderer* level)
 	: MovingObject{ x, y, speed, renderer, level }
 {
 	m_lives = 5;
-	m_blueJewels, m_redJewels, m_keys = 0;
 
 	m_animationSpeed = 250;
 
 	m_input = new Input();
+	m_message = new MessageHandler();
 
 	m_listOfTextures.push_back(Image::GetTexture("Assets/Player/PlayerIdleSpriteSheet.png", renderer));
 	//m_listOfTextures.push_back(Image::GetTexture("Assets/Player/PlayerUpSpriteSheet.png", renderer));
@@ -100,6 +101,10 @@ void Player::GetPlayerInput()
 	{
 		//RenderState(MOVERIGHT);
 		Right();
+	}
+	if (m_input->buttonIsPressed(LEFTSHOULDER))
+	{
+		m_message->showMessage(INSTRUCTIONS);
 	}
 	else
 	{

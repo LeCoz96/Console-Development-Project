@@ -1,5 +1,4 @@
 #include "Renderer.h"
-#include "Map.h"
 #include "LevelRenderer.h"
 #include "Exit.h"
 #include "Key.h"
@@ -207,7 +206,7 @@ void Renderer::ClearAndPresent()
 
 	m_exit->Render();
 
-		m_player->Render();
+	m_player->Render();
 
 	m_keyBlock->Render();
 	for (size_t i = 0; i < m_listOfKey.size(); i++)

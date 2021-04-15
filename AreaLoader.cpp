@@ -1,5 +1,4 @@
 #include "AreaLoader.h"
-#include "LevelRenderer.h"
 
 AreaLoader::AreaLoader()
 {
@@ -25,26 +24,4 @@ std::vector<std::string> AreaLoader::LoadArea(Areas area)
 	}
 	file.close();
 	return layout;
-}
-
-//// void AreaLoader::LoadArea(Areas areaToLoad, std::vector<std::string>& layout)
-//void AreaLoader::LoadArea(Areas area, std::vector<std::string> *layout)
-//{
-//	std::string line;
-//	std::ifstream file(m_areas[area].c_str());
-//	while (file >> line)
-//	{
-//		layout.push_back(line);
-//	}
-//	file.close();
-//}
-
-void AreaLoader::ChangeArea() // ChangeArea(Area area, std::vector<std::string>& layout);
-{
-	//LoadArea();
-}
-
-bool AreaLoader::IsChangingArea(int x, int y)
-{
-	return false;
 }

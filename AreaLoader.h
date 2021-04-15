@@ -12,6 +12,7 @@ enum Areas
 	Area04
 };
 
+
 class AreaLoader
 {
 public:
@@ -19,10 +20,6 @@ public:
 	~AreaLoader();
 
 	std::vector<std::string> LoadArea(Areas area);
-
-	void ChangeArea();
-
-	bool IsChangingArea(int x, int y);
 
 	std::vector<std::string> m_areas;
 };

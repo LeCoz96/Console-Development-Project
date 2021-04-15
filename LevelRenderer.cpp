@@ -125,6 +125,35 @@ void LevelRenderer::RenderLevel()
 	}
 }
 
+void LevelRenderer::ChangeArea()
+{
+	//++tempChange;
+
+	//if (tempChange >= 4)
+	//{
+	//	tempChange = 0;
+	//}
+
+	//if (tempChange == 0)
+	//{
+	//	m_load->LoadArea(Area01);
+	//}
+	//if (tempChange == 1)
+	//{
+	//	m_load->LoadArea(Area02);
+	//}
+	//if (tempChange == 2)
+	//{
+	//	m_load->LoadArea(Area03);
+	//}
+	//if (tempChange == 3)
+	//{
+	//	m_load->LoadArea(Area04);
+	//}
+
+	//RenderLevel();
+}
+
 bool LevelRenderer::IsWall(int x, int y)
 {
 	if (m_levelLayout[y / m_blockSize][x / m_blockSize] != '.')
@@ -135,5 +164,9 @@ bool LevelRenderer::IsWall(int x, int y)
 	{
 		return true;
 	}
+	//if (m_levelLayout[y / m_blockSize][x / m_blockSize] == '!')
+	//{
+	//	ChangeArea();
+	//}
 	return false;
 }

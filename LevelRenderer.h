@@ -31,9 +31,13 @@ public:
 
 	void RenderLevel();
 
+	void ChangeArea();
+
 	bool IsWall(int x, int y);
 
 private:
+
+	int tempChange = 0;
 
 
 	SDL_Texture* m_grass;
