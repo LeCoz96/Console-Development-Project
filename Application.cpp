@@ -3,6 +3,7 @@
 #include "Input.h"
 #include "MessageHandler.h"
 #include "Audio.h"
+#include "Timer.h"
 
 #ifdef _DEBUG
 #include"MemoryManager.h"
@@ -39,6 +40,7 @@ void Application::Run()
 	{
 		while (true)
 		{
+			Timer::GetInstance()->Tick();
 			mp_renderer->Update();
 			mp_renderer->ClearAndPresent();
 		}

@@ -10,6 +10,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "UI.h"
+#include "Timer.h"
 
 Renderer::Renderer()
 {
@@ -168,6 +169,8 @@ void Renderer::SetBackgroundColour()
 
 void Renderer::Update()
 {
+	float dt = Timer::GetInstance()->GetDeltaTime();
+
 	m_exit->Update();
 
 	m_player->GetPlayerInput();
@@ -235,6 +238,7 @@ void Renderer::ClearAndPresent()
 	m_UI->UpdateUI("Keys 1 / " + std::to_string(m_player->GetKeys()), 140, 1, m_renderer, m_UI->m_UIFont, { 255, 255, 255 });
 	m_UI->UpdateUI("Blue Jewels 10 / " + std::to_string(m_player->GetBlueJewels()), 300, 1, m_renderer, m_UI->m_UIFont, { 255, 255, 255 });
 	m_UI->UpdateUI("Red Jewels 10 / " + std::to_string(m_player->GetRedJewels()), 565, 1, m_renderer, m_UI->m_UIFont, { 255, 255, 255 });
+	m_UI->UpdateUI("FPS: " + std::to_string(Timer::GetInstance()->GetDeltaTime()), 5, 770, m_renderer, m_UI->m_UIFont, { 255, 255, 255 });
 
 	SDL_RenderPresent(m_renderer);
 }
