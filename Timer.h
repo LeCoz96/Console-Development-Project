@@ -1,7 +1,7 @@
 #include <SDL.h>
 #pragma once
 
-const int TARGET_FPS = 120;
+const int TARGET_FPS = 60;
 const float TARGET_DELTATIME = 1.5f;
 
 class Timer

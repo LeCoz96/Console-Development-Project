@@ -21,11 +21,11 @@ public:
 	void TakeDamage();
 	int GetLives();
 
-	void IncreaseScore(int object);
+	void IncreaseScore(int value);
+	void IncreaseKeys();
 
+	int GetScore();
 	int GetKeys();
-	int GetBlueJewels();
-	int GetRedJewels();
 
 	void GetPlayerInput();
 	bool PlayerEndGame();
@@ -46,7 +46,8 @@ private:
 	std::vector<SDL_Texture*> m_listOfPlayerRight;
 
 	int m_lives;
-	int m_blueJewels, m_redJewels, m_keys{ 0 };
+	int m_keys{ 0 };
+	int m_score{ 0 };
 
 	bool m_isIdle = true;
 };

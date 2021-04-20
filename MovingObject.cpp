@@ -1,5 +1,6 @@
 #include"MovingObject.h"
 #include"LevelRenderer.h"
+#include "Timer.h"
 
 MovingObject::MovingObject(int x, int y, int speed, SDL_Renderer* renderer, LevelRenderer* level)
 	: GameObject{ x, y, renderer, level }, m_moveSpeed{ speed }

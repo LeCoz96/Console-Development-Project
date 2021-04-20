@@ -8,7 +8,6 @@ LevelRenderer::LevelRenderer(SDL_Renderer* renderer, int blockSize)
 	m_levelSize = 25;
 
 	m_tileLayout.push_back(Image::GetTexture("Assets/Environment/.-Grass.png", renderer));
-	m_tileLayout.push_back(Image::GetTexture("Assets/Environment/0-Bush.png", renderer));
 	m_tileLayout.push_back(Image::GetTexture("Assets/Environment/1-HedgeDownCentre.png", renderer));
 	m_tileLayout.push_back(Image::GetTexture("Assets/Environment/2-HedgeTopCentre.png", renderer));
 	m_tileLayout.push_back(Image::GetTexture("Assets/Environment/3-HedgeRightCentre.png", renderer));
@@ -18,7 +17,6 @@ LevelRenderer::LevelRenderer(SDL_Renderer* renderer, int blockSize)
 	m_tileLayout.push_back(Image::GetTexture("Assets/Environment/7-HedgeTopLeftCorner.png", renderer));
 	m_tileLayout.push_back(Image::GetTexture("Assets/Environment/8-HedgeTopRightCorner.png", renderer));
 	m_tileLayout.push_back(Image::GetTexture("Assets/Environment/9-HedgeMiddle.png", renderer));
-	m_tileLayout.push_back(Image::GetTexture("Assets/Environment/.-Grass.png", renderer));
 
 	m_load = new AreaLoader();
 
@@ -44,78 +42,47 @@ void LevelRenderer::RenderLevel()
 	{
 		for (int column = 0; column < m_levelSize; column++)
 		{
+			m_destRect.x = column * m_blockSize;
+			m_destRect.y = row * m_blockSize;
+
+			Image::PrintImage(m_renderer, m_tileLayout[grass], m_sourceRect, m_destRect);
+
 			switch (m_levelLayout[row][column])
 			{
-			case '.':
-				m_destRect.x = column * m_blockSize;
-				m_destRect.y = row * m_blockSize;
-				Image::PrintImage(m_renderer, m_tileLayout[grass], m_sourceRect, m_destRect);
-				break;
-
-			case '0':
-				m_destRect.x = column * m_blockSize;
-				m_destRect.y = row * m_blockSize;
-				Image::PrintImage(m_renderer, m_tileLayout[bush], m_sourceRect, m_destRect);
-				break;
-
 			case '1':
-				m_destRect.x = column * m_blockSize;
-				m_destRect.y = row * m_blockSize;
 				Image::PrintImage(m_renderer, m_tileLayout[centerBottom], m_sourceRect, m_destRect);
 				break;
 
 			case '2':
-				m_destRect.x = column * m_blockSize;
-				m_destRect.y = row * m_blockSize;
 				Image::PrintImage(m_renderer, m_tileLayout[centerTop], m_sourceRect, m_destRect);
 				break;
 
 			case '3':
-				m_destRect.x = column * m_blockSize;
-				m_destRect.y = row * m_blockSize;
 				Image::PrintImage(m_renderer, m_tileLayout[centerRight], m_sourceRect, m_destRect);
 				break;
 
 			case '4':
-				m_destRect.x = column * m_blockSize;
-				m_destRect.y = row * m_blockSize;
 				Image::PrintImage(m_renderer, m_tileLayout[centerLeft], m_sourceRect, m_destRect);
 				break;
 
 			case '5':
-				m_destRect.x = column * m_blockSize;
-				m_destRect.y = row * m_blockSize;
 				Image::PrintImage(m_renderer, m_tileLayout[cornerBottomLeft], m_sourceRect, m_destRect);
 				break;
 
 			case '6':
-				m_destRect.x = column * m_blockSize;
-				m_destRect.y = row * m_blockSize;
 				Image::PrintImage(m_renderer, m_tileLayout[cornerBottomRight], m_sourceRect, m_destRect);
 				break;
 
 			case '7':
-				m_destRect.x = column * m_blockSize;
-				m_destRect.y = row * m_blockSize;
 				Image::PrintImage(m_renderer, m_tileLayout[cornerTopLeft], m_sourceRect, m_destRect);
 				break;
 
 			case '8':
-				m_destRect.x = column * m_blockSize;
-				m_destRect.y = row * m_blockSize;
 				Image::PrintImage(m_renderer, m_tileLayout[cornerTopRight], m_sourceRect, m_destRect);
 				break;
 
 			case '9':
-				m_destRect.x = column * m_blockSize;
-				m_destRect.y = row * m_blockSize;
 				Image::PrintImage(m_renderer, m_tileLayout[middle], m_sourceRect, m_destRect);
-				break;
-
-			case '!':
-				m_destRect.x = column * m_blockSize;
-				m_destRect.y = row * m_blockSize;
-				Image::PrintImage(m_renderer, m_tileLayout[grass], m_sourceRect, m_destRect);
 				break;
 
 			default:
@@ -125,33 +92,18 @@ void LevelRenderer::RenderLevel()
 	}
 }
 
-void LevelRenderer::ChangeArea()
+void LevelRenderer::NextArea()
 {
-	//++tempChange;
+	++m_levelToLoad;
 
-	//if (tempChange >= 4)
-	//{
-	//	tempChange = 0;
-	//}
+	if (m_levelToLoad >= 4)
+	{
+		m_levelToLoad = 0;
+	}
 
-	//if (tempChange == 0)
-	//{
-	//	m_load->LoadArea(Area01);
-	//}
-	//if (tempChange == 1)
-	//{
-	//	m_load->LoadArea(Area02);
-	//}
-	//if (tempChange == 2)
-	//{
-	//	m_load->LoadArea(Area03);
-	//}
-	//if (tempChange == 3)
-	//{
-	//	m_load->LoadArea(Area04);
-	//}
+	m_levelLayout = m_load->LoadArea(static_cast<Areas>(m_levelToLoad));
 
-	//RenderLevel();
+	RenderLevel();
 }
 
 bool LevelRenderer::IsWall(int x, int y)
@@ -160,13 +112,5 @@ bool LevelRenderer::IsWall(int x, int y)
 	{
 		return true;
 	}
-	if (m_levelLayout[y / m_blockSize][x / m_blockSize] == '0')
-	{
-		return true;
-	}
-	//if (m_levelLayout[y / m_blockSize][x / m_blockSize] == '!')
-	//{
-	//	ChangeArea();
-	//}
 	return false;
 }

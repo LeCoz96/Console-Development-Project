@@ -45,22 +45,19 @@ int Player::GetLives()
 	return m_lives;
 }
 
-void Player::IncreaseScore(int object)
+void Player::IncreaseScore(int value)
 {
-	switch (object)
-	{
-	case 0:
-		++m_keys;
-		break;
-	case 1:
-		++m_blueJewels;
-		break;
-	case 2:
-		++m_redJewels;
-		break;
-	default:
-		break;
-	}
+	m_score += value;
+}
+
+void Player::IncreaseKeys()
+{
+	++m_keys;
+}
+
+int Player::GetScore()
+{
+	return m_score;
 }
 
 int Player::GetKeys()
@@ -68,15 +65,6 @@ int Player::GetKeys()
 	return m_keys;
 }
 
-int Player::GetBlueJewels()
-{
-	return m_blueJewels;
-}
-
-int Player::GetRedJewels()
-{
-	return m_redJewels;
-}
 
 void Player::GetPlayerInput()
 {

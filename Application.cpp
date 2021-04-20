@@ -32,9 +32,9 @@ void Application::Run()
 		message.showMessage(CONTROLLER_WARNING);
 	}
 
-	mp_renderer->SetBackgroundColour();
+	//mp_renderer->SetBackgroundColour();
 
-	message.showMessage(INSTRUCTIONS);
+	//message.showMessage(INSTRUCTIONS);
 
 	if (mp_renderer)
 	{

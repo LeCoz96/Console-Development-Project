@@ -14,7 +14,7 @@ private:
 	const SDL_MessageBoxData ms_controllerMessage{ SDL_MESSAGEBOX_ERROR,
 													NULL,
 													"Controller Error",
-													"Controller Not Detected !!! - \n Insert controller and press Escape",
+													"Controller Not Detected !!! - \n Insert controller and Press Escape",
 													0,
 													NULL,
 													NULL };

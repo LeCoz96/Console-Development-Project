@@ -18,9 +18,6 @@ class Exit;
 class Key;
 class KeyBlock;
 class JewelBlue;
-class JewelBlueBlock;
-class JewelRed;
-class JewelRedBlock;
 
 class Player;
 class Enemy;
@@ -32,13 +29,22 @@ class Renderer
 public:
 	Renderer();
 	~Renderer();
-	void RenderGameObjects();
-	void SetBackgroundColour();
+	//void SetBackgroundColour();
 	void Update();
+	void CollisionChecks(Player* player);
 	void ClearAndPresent();
+	void StaticObjectUpdate();
 	void Pause(float delay);
 	void Destroy();
 
+	void ConstructLevelObjects();
+
+	void ConstructLevel01Objects();
+	void ConstructLevel02Objects();
+	void ConstructLevel03Objects();
+	void ConstructLevel04Objects();
+
+	void DestructLevelObjects();
 private:
 	SDL_Window* m_window{ nullptr };
 	SDL_Renderer* m_renderer{ nullptr };
@@ -50,18 +56,18 @@ private:
 	Key* m_key{ nullptr };
 	KeyBlock* m_keyBlock{ nullptr };
 	JewelBlue* m_jewelBlue{ nullptr };
-	JewelBlueBlock* m_jewelBlueBlock{ nullptr };
-	JewelRed* m_jewelRed{ nullptr };
-	JewelRedBlock* m_jewelRedBlock{ nullptr };
 
 	Player* m_player{ nullptr };
+	int m_startX, m_startY{ 0 };
 	Enemy* m_enemy{ nullptr };
 
 	UI* m_UI{ nullptr };
 
-	std::vector<Key*> m_listOfKey;
 	std::vector<JewelBlue*> m_listOfJewelBlue;
-	std::vector<JewelRed*> m_listOfJewelRed;
 	std::vector<Enemy*> m_listOfEnemy;
+
+	bool m_updateStaticObject{ true };
+
+	int m_currentLevel{ 0 };
 };
 

@@ -6,7 +6,6 @@
 enum Tiles
 {
 	grass,
-	bush,
 	centerBottom,
 	centerTop,
 	centerRight,
@@ -31,17 +30,15 @@ public:
 
 	void RenderLevel();
 
-	void ChangeArea();
+	void NextArea();
 
 	bool IsWall(int x, int y);
 
 private:
 
-	int tempChange = 0;
-
+	int m_levelToLoad = 0;
 
 	SDL_Texture* m_grass;
-	SDL_Texture* m_bush;
 	SDL_Texture* m_centerBottom;
 	SDL_Texture* m_centerTop;
 	SDL_Texture* m_centerRight;
@@ -51,7 +48,6 @@ private:
 	SDL_Texture* m_cornerTopLeft;
 	SDL_Texture* m_cornerTopRight;
 	SDL_Texture* m_middle;
-
 
 	int m_blockSize;
 
