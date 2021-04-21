@@ -1,8 +1,7 @@
 #include"MovingObject.h"
 #include"LevelRenderer.h"
-#include "Timer.h"
 
-MovingObject::MovingObject(int x, int y, int speed, SDL_Renderer* renderer, LevelRenderer* level)
+MovingObject::MovingObject(int x, int y, SDL_Renderer* renderer, LevelRenderer* level, int speed)
 	: GameObject{ x, y, renderer, level }, m_moveSpeed{ speed }
 {
 }
@@ -30,7 +29,7 @@ void MovingObject::Right()
 void MovingObject::Up()
 {
 	int y = m_yPos - m_moveSpeed;
-	if (!m_level->IsWall(m_xPos, y)&&
+	if (!m_level->IsWall(m_xPos, y) &&
 		!m_level->IsWall(m_xPos + (m_blockSize - 1), y))
 	{
 		m_yPos = y;

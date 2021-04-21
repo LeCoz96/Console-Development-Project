@@ -11,10 +11,8 @@ public:
     ~KeyBlock() = default;
     void Render()override;
     
-    bool HasEnoughKeys();
+    bool HasEnoughKeys(Player* player);
 private:
     SDL_Texture* m_keyBlock;
-
-    Player* m_player;
 };
 

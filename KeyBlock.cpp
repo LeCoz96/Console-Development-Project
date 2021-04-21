@@ -13,11 +13,7 @@ void KeyBlock::Render()
 	Image::PrintImage(m_renderer, m_keyBlock, m_sourceRect, m_destRect);
 }
 
-bool KeyBlock::HasEnoughKeys()
+bool KeyBlock::HasEnoughKeys(Player* player)
 {
-	if (m_player->GetKeys() > 0)
-	{
-		return true;
-	}
-	return false;
+	return player->GetKeys() > 0;
 }

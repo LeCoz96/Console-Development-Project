@@ -15,7 +15,7 @@ class Player :
 	public MovingObject
 {
 public:
-	Player(int x, int y, int speed, SDL_Renderer* renderer, LevelRenderer* level);
+	Player(int x, int y, SDL_Renderer* renderer, LevelRenderer* level, int speed = 2);
 	~Player();
 
 	void TakeDamage();
@@ -23,6 +23,7 @@ public:
 
 	void IncreaseScore(int value);
 	void IncreaseKeys();
+	void DecreaseKeys();
 
 	int GetScore();
 	int GetKeys();
@@ -30,9 +31,8 @@ public:
 	void GetPlayerInput();
 	bool PlayerEndGame();
 
-	void Render()override;
-
 	void RenderState(PlayerStates state);
+	void Render()override;
 
 private:
 	Input* m_input{ nullptr };
@@ -46,8 +46,8 @@ private:
 	std::vector<SDL_Texture*> m_listOfPlayerRight;
 
 	int m_lives;
-	int m_keys{ 0 };
-	int m_score{ 0 };
+	int m_keys;
+	int m_score;
 
 	bool m_isIdle = true;
 };

@@ -3,10 +3,12 @@
 #include "Input.h"
 #include "MessageHandler.h"
 
-Player::Player(int x, int y, int speed, SDL_Renderer* renderer, LevelRenderer* level)
-	: MovingObject{ x, y, speed, renderer, level }
+Player::Player(int x, int y, SDL_Renderer* renderer, LevelRenderer* level, int speed)
+	: MovingObject{ x, y, renderer, level, speed }
 {
 	m_lives = 5;
+	m_keys = 0;
+	m_score = 0;
 
 	m_animationSpeed = 250;
 
@@ -14,10 +16,10 @@ Player::Player(int x, int y, int speed, SDL_Renderer* renderer, LevelRenderer* l
 	m_message = new MessageHandler();
 
 	m_listOfTextures.push_back(Image::GetTexture("Assets/Player/PlayerIdleSpriteSheet.png", renderer));
-	//m_listOfTextures.push_back(Image::GetTexture("Assets/Player/PlayerUpSpriteSheet.png", renderer));
-	//m_listOfTextures.push_back(Image::GetTexture("Assets/Player/PlayerDownSpriteSheet.png", renderer));
-	//m_listOfTextures.push_back(Image::GetTexture("Assets/Player/PlayerLeftSpriteSheet.png", renderer));
-	//m_listOfTextures.push_back(Image::GetTexture("Assets/Player/PlayerRightSpriteSheet.png", renderer));
+	m_listOfTextures.push_back(Image::GetTexture("Assets/Player/PlayerUpSpriteSheet.png", renderer));
+	m_listOfTextures.push_back(Image::GetTexture("Assets/Player/PlayerDownSpriteSheet.png", renderer));
+	m_listOfTextures.push_back(Image::GetTexture("Assets/Player/PlayerLeftSpriteSheet.png", renderer));
+	m_listOfTextures.push_back(Image::GetTexture("Assets/Player/PlayerRightSpriteSheet.png", renderer));
 
 	for (size_t i = 0; i < m_listOfTextures.size(); i++)
 	{
@@ -55,6 +57,11 @@ void Player::IncreaseKeys()
 	++m_keys;
 }
 
+void Player::DecreaseKeys()
+{
+	--m_keys;
+}
+
 int Player::GetScore()
 {
 	return m_score;
@@ -65,29 +72,28 @@ int Player::GetKeys()
 	return m_keys;
 }
 
-
 void Player::GetPlayerInput()
 {
 	m_input->Update();
 	
 	if (m_input->buttonIsPressed(UP))
 	{
-		//RenderState(MOVEUP);
+		RenderState(MOVEUP);
 		Up();
 	}
 	else if (m_input->buttonIsPressed(DOWN))
 	{
-		//RenderState(MOVEDOWN);
+		RenderState(MOVEDOWN);
 		Down();
 	}
 	else if (m_input->buttonIsPressed(LEFT))
 	{
-		//RenderState(MOVELEFT);.
+		RenderState(MOVELEFT);
 		Left();
 	}
 	else if (m_input->buttonIsPressed(RIGHT))
 	{
-		//RenderState(MOVERIGHT);
+		RenderState(MOVERIGHT);
 		Right();
 	}
 	if (m_input->buttonIsPressed(LEFTSHOULDER))
@@ -96,18 +102,13 @@ void Player::GetPlayerInput()
 	}
 	else
 	{
-		//RenderState(IDLE);
+		RenderState(IDLE);
 	}
 }
 
 bool Player::PlayerEndGame()
 {
 	return false;
-}
-
-void Player::Render()
-{
-	SDL_RenderCopy(m_renderer, m_listOfTextures[0], &m_imageDictionary[0].first, &m_destRect);
 }
 
 void Player::RenderState(PlayerStates state)
@@ -137,5 +138,10 @@ void Player::RenderState(PlayerStates state)
 	default:
 		break;
 	}
+}
+
+void Player::Render()
+{
+	SDL_RenderCopy(m_renderer, m_listOfTextures[0], &m_imageDictionary[0].first, &m_destRect);
 }
 

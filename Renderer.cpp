@@ -9,6 +9,9 @@
 #include "UI.h"
 #include "Timer.h"
 
+
+#include<random>
+
 Renderer::Renderer()
 {
 	SDL_Init(SDL_INIT_VIDEO);
@@ -47,7 +50,7 @@ Renderer::Renderer()
 
 	m_UI = new UI();
 	m_level = new LevelRenderer(m_renderer, 32);
-	m_player = new Player(0, 0, 1, m_renderer, m_level);
+	m_player = new Player(0, 0, m_renderer, m_level);
 
 	ConstructLevelObjects();
 }
@@ -84,25 +87,12 @@ Renderer::~Renderer()
 	SDL_Quit();
 }
 
-//void Renderer::SetBackgroundColour()
-//{
-//	// render a green ground
-//	int result = SDL_SetRenderDrawColor
-//	(
-//		m_renderer,	// the target renderer
-//		0,				// red value
-//		215,			// green value
-//		0,				// blue value
-//		150				// alpha
-//	);
-//}
-
 void Renderer::Update()
 {
 	float dt = Timer::GetInstance()->GetDeltaTime();
 
-	m_player->GetPlayerInput();
 	m_player->Update();
+	m_player->GetPlayerInput();
 
 	if (m_updateStaticObject)
 	{
@@ -158,6 +148,24 @@ void Renderer::CollisionChecks(Player* player)
 		DestructLevelObjects();
 		ConstructLevelObjects();
 		m_updateStaticObject = true;
+	}
+
+	if (m_keyBlock)
+	{
+		if (m_keyBlock->Collision(player))
+		{
+			if (m_keyBlock->HasEnoughKeys(player))
+			{
+				m_player->DecreaseKeys();
+				delete m_keyBlock;
+				m_keyBlock = nullptr;
+			}
+			else
+			{
+				m_player->SetX(m_player->GetX() - 1);
+				m_player->SetY(m_player->GetY() - 1);
+			}
+		}
 	}
 }
 
@@ -273,10 +281,10 @@ void Renderer::ConstructLevel01Objects()
 	m_keyBlock = new KeyBlock(736, 576, m_renderer, m_level);
 	m_key = new Key(128, 736, m_renderer, m_level);
 
-	m_listOfEnemy.push_back(new Enemy(640, 96, 2, m_renderer, m_level));
-	m_listOfEnemy.push_back(new Enemy(384, 256, 2, m_renderer, m_level));
-	m_listOfEnemy.push_back(new Enemy(192, 512, 2, m_renderer, m_level));
-	m_listOfEnemy.push_back(new Enemy(544, 480, 2, m_renderer, m_level));
+	m_listOfEnemy.push_back(new Enemy(640, 96, m_renderer, m_level));
+	m_listOfEnemy.push_back(new Enemy(384, 256, m_renderer, m_level));
+	m_listOfEnemy.push_back(new Enemy(192, 512, m_renderer, m_level));
+	m_listOfEnemy.push_back(new Enemy(544, 480, m_renderer, m_level));
 
 	m_listOfJewelBlue.push_back(new JewelBlue(736, 64, m_renderer, m_level));
 	m_listOfJewelBlue.push_back(new JewelBlue(704, 32, m_renderer, m_level));
@@ -303,9 +311,9 @@ void Renderer::ConstructLevel02Objects()
 	m_keyBlock = new KeyBlock(736, 192, m_renderer, m_level);
 	m_key = new Key(736, 736, m_renderer, m_level);
 
-	m_listOfEnemy.push_back(new Enemy(512, 64, 2, m_renderer, m_level));
-	m_listOfEnemy.push_back(new Enemy(224, 608, 2, m_renderer, m_level));
-	m_listOfEnemy.push_back(new Enemy(704, 416, 2, m_renderer, m_level));
+	m_listOfEnemy.push_back(new Enemy(512, 64, m_renderer, m_level));
+	m_listOfEnemy.push_back(new Enemy(224, 608, m_renderer, m_level));
+	m_listOfEnemy.push_back(new Enemy(704, 416, m_renderer, m_level));
 
 	m_listOfJewelBlue.push_back(new JewelBlue(736, 672, m_renderer, m_level));
 	m_listOfJewelBlue.push_back(new JewelBlue(672, 672, m_renderer, m_level));
@@ -332,9 +340,9 @@ void Renderer::ConstructLevel03Objects()
 	m_keyBlock = new KeyBlock(64, 32, m_renderer, m_level);
 	m_key = new Key(352, 544, m_renderer, m_level);
 
-	m_listOfEnemy.push_back(new Enemy(192, 544, 2, m_renderer, m_level));
-	m_listOfEnemy.push_back(new Enemy(544, 480, 2, m_renderer, m_level));
-	m_listOfEnemy.push_back(new Enemy(288, 192, 2, m_renderer, m_level));
+	m_listOfEnemy.push_back(new Enemy(192, 544, m_renderer, m_level));
+	m_listOfEnemy.push_back(new Enemy(544, 480, m_renderer, m_level));
+	m_listOfEnemy.push_back(new Enemy(288, 192, m_renderer, m_level));
 
 	m_listOfJewelBlue.push_back(new JewelBlue(64, 128, m_renderer, m_level));
 	m_listOfJewelBlue.push_back(new JewelBlue(96, 352, m_renderer, m_level));
@@ -361,9 +369,9 @@ void Renderer::ConstructLevel04Objects()
 	m_keyBlock = new KeyBlock(448, 320, m_renderer, m_level);
 	m_key = new Key(32, 32, m_renderer, m_level);
 
-	m_listOfEnemy.push_back(new Enemy(352, 64, 2, m_renderer, m_level));
-	m_listOfEnemy.push_back(new Enemy(64, 544, 2, m_renderer, m_level));
-	m_listOfEnemy.push_back(new Enemy(224, 288, 2, m_renderer, m_level));
+	m_listOfEnemy.push_back(new Enemy(352, 64, m_renderer, m_level));
+	m_listOfEnemy.push_back(new Enemy(64, 544, m_renderer, m_level));
+	m_listOfEnemy.push_back(new Enemy(224, 288, m_renderer, m_level));
 
 	m_listOfJewelBlue.push_back(new JewelBlue(32, 512, m_renderer, m_level));
 	m_listOfJewelBlue.push_back(new JewelBlue(96, 576, m_renderer, m_level));

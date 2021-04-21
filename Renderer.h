@@ -29,7 +29,6 @@ class Renderer
 public:
 	Renderer();
 	~Renderer();
-	//void SetBackgroundColour();
 	void Update();
 	void CollisionChecks(Player* player);
 	void ClearAndPresent();

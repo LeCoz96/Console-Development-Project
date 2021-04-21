@@ -2,16 +2,18 @@
 #include "MovingObject.h"
 #include<vector>
 #include<iostream>
+#include<random>
 class Enemy :
     public MovingObject
 {
 public:
-    Enemy(int x, int y, int speed, SDL_Renderer* renderer, LevelRenderer* level);
+    Enemy(int x, int y, SDL_Renderer* renderer, LevelRenderer* level, int speed = 16);
     ~Enemy() = default;
     
     void Patrol();
     void Render()override;
     void Update()override;
+    void MoveInRandomDirection();
 private:
     std::vector<SDL_Texture*> m_listOfEnemyTexture;
 
