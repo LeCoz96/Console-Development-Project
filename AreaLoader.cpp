@@ -5,7 +5,6 @@ AreaLoader::AreaLoader()
 	m_areas.push_back("Assets/Map/Map01.txt");
 	m_areas.push_back("Assets/Map/Map02.txt");
 	m_areas.push_back("Assets/Map/Map03.txt");
-	m_areas.push_back("Assets/Map/Map04.txt");
 }
 
 AreaLoader::~AreaLoader()

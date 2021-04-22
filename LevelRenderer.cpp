@@ -1,6 +1,7 @@
 #include "LevelRenderer.h"
 #include "AreaLoader.h"
 #include "Image.h"
+#include "Player.h"
 
 LevelRenderer::LevelRenderer(SDL_Renderer* renderer, int blockSize)
 	: m_renderer{ renderer }, m_blockSize{ blockSize }
@@ -85,6 +86,10 @@ void LevelRenderer::RenderLevel()
 				Image::PrintImage(m_renderer, m_tileLayout[middle], m_sourceRect, m_destRect);
 				break;
 
+			case '!':
+				Image::PrintImage(m_renderer, m_tileLayout[grass], m_sourceRect, m_destRect);
+				break;
+
 			default:
 				break;
 			}
@@ -96,21 +101,35 @@ void LevelRenderer::NextArea()
 {
 	++m_levelToLoad;
 
-	if (m_levelToLoad >= 4)
+	if (m_levelToLoad >= 3)
 	{
-		m_levelToLoad = 0;
+		m_player->m_playerFinishedGame = true;
 	}
+	else
+	{
+		m_levelLayout = m_load->LoadArea(static_cast<Areas>(m_levelToLoad));
 
-	m_levelLayout = m_load->LoadArea(static_cast<Areas>(m_levelToLoad));
+		RenderLevel();
+	}
+}
 
-	RenderLevel();
+void LevelRenderer::SetPlayer(Player* player)
+{
+	m_player = player;
 }
 
 bool LevelRenderer::IsWall(int x, int y)
 {
 	if (m_levelLayout[y / m_blockSize][x / m_blockSize] != '.')
 	{
-		return true;
+		if (m_levelLayout[y / m_blockSize][x / m_blockSize] == '!')
+		{
+			return !m_player->HasKey();
+		}
+		else
+		{
+			return true;
+		}
 	}
 	return false;
 }

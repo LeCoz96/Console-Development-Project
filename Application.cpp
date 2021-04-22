@@ -4,6 +4,7 @@
 #include "MessageHandler.h"
 #include "Audio.h"
 #include "Timer.h"
+#include "Player.h"
 
 #ifdef _DEBUG
 #include"MemoryManager.h"
@@ -11,9 +12,11 @@
 
 Application::Application()
 {
-	mp_controllers =	new Input();
-	mp_renderer =		new Renderer();
-	mp_sounds =			new Audio();
+	mp_controllers = new Input();
+	mp_renderer = new Renderer();
+	mp_sounds = new Audio();
+
+	mp_sounds->LoadAudio("Assets/Audio/Background.mp3", 0, MUSIC, 20);
 }
 
 Application::~Application()
@@ -32,18 +35,15 @@ void Application::Run()
 		message.showMessage(CONTROLLER_WARNING);
 	}
 
-	//message.showMessage(INSTRUCTIONS);
+	message.showMessage(INSTRUCTIONS);
 
-	if (mp_renderer)
-	{
-		while (true)
-		{
-			Timer::GetInstance()->Tick();
-			mp_renderer->Update();
-			mp_renderer->ClearAndPresent();
-		}
-		//mp_renderer->Pause(20000);
-	}
+	mp_sounds->PlayMusicTrack(0, 1);
+
+	Timer::GetInstance()->Tick();
+
+	mp_renderer->Update();
+
+	file.close();
 
 	mp_renderer->Destroy();
 	Destroy();

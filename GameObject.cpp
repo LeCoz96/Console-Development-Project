@@ -11,8 +11,10 @@ GameObject::GameObject(int x, int y, SDL_Renderer* renderer, LevelRenderer* leve
 
 	m_blockSize = m_level->GetBlockSize();
 
-	m_sourceRect.w = m_destRect.w = 32;
-	m_sourceRect.h = m_destRect.h = 32;
+	m_sourceRect.w = 16;
+	m_sourceRect.h = 16;
+	m_destRect.w = m_sourceRect.w * m_imageSize;
+	m_destRect.h = m_sourceRect.h * m_imageSize;
 }
 
 void GameObject::SetX(int value)
@@ -55,17 +57,7 @@ bool GameObject::Collision(GameObject* object)
 
 void GameObject::Update()
 {
-	Animate();
 	m_destRect.x = m_xPos;
 	m_destRect.y = m_yPos;
 }
 
-void GameObject::Animate()
-{
-	for (size_t i = 0; i < m_imageDictionary.size(); i++)
-	{
-		m_imageDictionary[i].first.x = m_imageDictionary[i].first.w * static_cast<int>(((SDL_GetTicks() / m_animationSpeed) % m_imageDictionary[i].second));
-	}
-	m_destRect.w = m_imageDictionary[0].first.w * m_imageSize;
-	m_destRect.h = m_imageDictionary[0].first.h * m_imageSize;
-}

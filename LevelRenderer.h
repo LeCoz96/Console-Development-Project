@@ -19,6 +19,7 @@ enum Tiles
 };
 
 class AreaLoader;
+class Player;
 
 class LevelRenderer
 {
@@ -32,22 +33,13 @@ public:
 
 	void NextArea();
 
+	void SetPlayer(Player* player);
+
 	bool IsWall(int x, int y);
 
 private:
 
 	int m_levelToLoad = 0;
-
-	SDL_Texture* m_grass;
-	SDL_Texture* m_centerBottom;
-	SDL_Texture* m_centerTop;
-	SDL_Texture* m_centerRight;
-	SDL_Texture* m_centerLeft;
-	SDL_Texture* m_cornerBottomLeft;
-	SDL_Texture* m_cornerBottomRight;
-	SDL_Texture* m_cornerTopLeft;
-	SDL_Texture* m_cornerTopRight;
-	SDL_Texture* m_middle;
 
 	int m_blockSize;
 
@@ -57,6 +49,7 @@ private:
 	SDL_Rect m_sourceRect, m_destRect;
 
 	AreaLoader* m_load;
+	Player* m_player;
 
 	std::vector<std::string> m_levelLayout;
 	std::vector<SDL_Texture*> m_tileLayout;

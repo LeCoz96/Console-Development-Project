@@ -2,6 +2,7 @@
 #include <SDL.h>
 #include<stdio.h>
 #include<iostream>
+#include<fstream>
 #include "Application.h"
 
 int main(int argc, char* argv[])

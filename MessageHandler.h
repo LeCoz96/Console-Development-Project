@@ -22,7 +22,7 @@ private:
 	const SDL_MessageBoxData ms_instructionMessage = { SDL_MESSAGEBOX_INFORMATION,
 														NULL,
 														"Controller Instructions",
-	"Instructions - \nDirectional Buttons = Movement\nA = Throw Weapon\nB = Quit Game\nLB = Show instructions",
+	"Instructions - \nDirectional Buttons = Movement\nX = 30 FPS\nY = 60 FPS\nB = 120 FPS",
 														1,
 														&button,
 														NULL };

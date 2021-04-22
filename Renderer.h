@@ -33,7 +33,6 @@ public:
 	void CollisionChecks(Player* player);
 	void ClearAndPresent();
 	void StaticObjectUpdate();
-	void Pause(float delay);
 	void Destroy();
 
 	void ConstructLevelObjects();
@@ -41,7 +40,6 @@ public:
 	void ConstructLevel01Objects();
 	void ConstructLevel02Objects();
 	void ConstructLevel03Objects();
-	void ConstructLevel04Objects();
 
 	void DestructLevelObjects();
 private:

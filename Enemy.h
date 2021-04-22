@@ -7,13 +7,14 @@ class Enemy :
     public MovingObject
 {
 public:
-    Enemy(int x, int y, SDL_Renderer* renderer, LevelRenderer* level, int speed = 16);
+    Enemy(int x, int y, SDL_Renderer* renderer, LevelRenderer* level, int speed = 32);
     ~Enemy() = default;
     
     void Patrol();
     void Render()override;
     void Update()override;
     void MoveInRandomDirection();
+
 private:
     std::vector<SDL_Texture*> m_listOfEnemyTexture;
 

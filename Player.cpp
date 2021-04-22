@@ -2,6 +2,7 @@
 #include "Image.h"
 #include "Input.h"
 #include "MessageHandler.h"
+#include "Audio.h"
 
 Player::Player(int x, int y, SDL_Renderer* renderer, LevelRenderer* level, int speed)
 	: MovingObject{ x, y, renderer, level, speed }
@@ -14,23 +15,17 @@ Player::Player(int x, int y, SDL_Renderer* renderer, LevelRenderer* level, int s
 
 	m_input = new Input();
 	m_message = new MessageHandler();
+	m_sounds = new Audio();
+
+	m_sounds->LoadAudio("Assets/Audio/Kill.mp3", 0, SFX, 20);
+	m_sounds->LoadAudio("Assets/Audio/ThorHurt.mp3", 1, SFX, 20);
+	m_sounds->LoadAudio("Assets/Audio/ThorInteraction.mp3", 2, SFX, 20);
 
 	m_listOfTextures.push_back(Image::GetTexture("Assets/Player/PlayerIdleSpriteSheet.png", renderer));
 	m_listOfTextures.push_back(Image::GetTexture("Assets/Player/PlayerUpSpriteSheet.png", renderer));
 	m_listOfTextures.push_back(Image::GetTexture("Assets/Player/PlayerDownSpriteSheet.png", renderer));
 	m_listOfTextures.push_back(Image::GetTexture("Assets/Player/PlayerLeftSpriteSheet.png", renderer));
 	m_listOfTextures.push_back(Image::GetTexture("Assets/Player/PlayerRightSpriteSheet.png", renderer));
-
-	for (size_t i = 0; i < m_listOfTextures.size(); i++)
-	{
-		m_imageDictionary.push_back(std::make_pair(SDL_Rect(), 0));
-		SDL_QueryTexture(m_listOfTextures[i], NULL, NULL, &m_imageDictionary[i].first.w, &m_imageDictionary[i].first.h);
-		m_imageDictionary[i].first.x = 0;
-		m_imageDictionary[i].first.y = 0;
-		m_imageDictionary[i].second = 4;
-
-		m_imageDictionary[i].first.w /= m_imageDictionary[i].second;
-	}
 }
 
 Player::~Player()
@@ -40,6 +35,16 @@ Player::~Player()
 void Player::TakeDamage()
 {
 	--m_lives;
+	if (m_lives > 0)
+	{
+		m_sounds->PlaySFX(1, 0, 0);
+	}
+	else
+	{
+		m_sounds->PlaySFX(0, 0, 0);
+
+		m_playerIsDead = true;
+	}
 }
 
 int Player::GetLives()
@@ -50,11 +55,13 @@ int Player::GetLives()
 void Player::IncreaseScore(int value)
 {
 	m_score += value;
+	m_sounds->PlaySFX(2, 0, 0);
 }
 
 void Player::IncreaseKeys()
 {
 	++m_keys;
+	m_sounds->PlaySFX(2, 0, 0);
 }
 
 void Player::DecreaseKeys()
@@ -67,81 +74,120 @@ int Player::GetScore()
 	return m_score;
 }
 
-int Player::GetKeys()
-{
-	return m_keys;
-}
-
 void Player::GetPlayerInput()
 {
 	m_input->Update();
-	
+
 	if (m_input->buttonIsPressed(UP))
 	{
-		RenderState(MOVEUP);
+		m_state = MOVEUP;
 		Up();
 	}
 	else if (m_input->buttonIsPressed(DOWN))
 	{
-		RenderState(MOVEDOWN);
+		m_state = MOVEDOWN;
 		Down();
 	}
 	else if (m_input->buttonIsPressed(LEFT))
 	{
-		RenderState(MOVELEFT);
+		m_state = MOVELEFT;
 		Left();
 	}
 	else if (m_input->buttonIsPressed(RIGHT))
 	{
-		RenderState(MOVERIGHT);
+		m_state = MOVERIGHT;
 		Right();
 	}
-	if (m_input->buttonIsPressed(LEFTSHOULDER))
+	else if (m_input->buttonIsPressed(X))
 	{
-		m_message->showMessage(INSTRUCTIONS);
+		FPS30();
+	}
+	else if (m_input->buttonIsPressed(Y))
+	{
+		FPS60();
+	}
+	else if (m_input->buttonIsPressed(B))
+	{
+		FPS120();
 	}
 	else
 	{
-		RenderState(IDLE);
+		m_state = IDLE;
 	}
 }
 
-bool Player::PlayerEndGame()
+void Player::FPS30()
 {
-	return false;
+	m_chosenFPS = 30.f;
 }
 
-void Player::RenderState(PlayerStates state)
+void Player::FPS60()
 {
-	switch (state)
+	m_chosenFPS = 60.f;
+}
+
+void Player::FPS120()
+{
+	m_chosenFPS = 120.f;
+}
+
+bool Player::PlayerFinishedGame()
+{
+	return m_playerFinishedGame;
+}
+
+bool Player::PlayerIsDead()
+{
+	return m_playerIsDead;
+}
+
+bool Player::HasKey()
+{
+	return m_keys > 0;
+}
+
+void Player::Render()
+{
+	SDL_RenderCopy(m_renderer, m_listOfTextures[m_state], &m_sourceRect, &m_destRect);
+}
+
+void Player::Update()
+{
+	switch (m_state)
 	{
 	case IDLE:
-		SDL_RenderCopy(m_renderer, m_listOfTextures[0], &m_imageDictionary[0].first, &m_destRect);
+		Animate(IDLE);
 		break;
 
 	case MOVEUP:
-		SDL_RenderCopy(m_renderer, m_listOfTextures[1], &m_imageDictionary[1].first, &m_destRect);
+		Animate(MOVEUP);
 		break;
 
 	case MOVEDOWN:
-		SDL_RenderCopy(m_renderer, m_listOfTextures[2], &m_imageDictionary[2].first, &m_destRect);
+		Animate(MOVEDOWN);
 		break;
 
 	case MOVELEFT:
-		SDL_RenderCopy(m_renderer, m_listOfTextures[3], &m_imageDictionary[3].first, &m_destRect);
+		Animate(MOVELEFT);
 		break;
 
 	case MOVERIGHT:
-		SDL_RenderCopy(m_renderer, m_listOfTextures[4], &m_imageDictionary[4].first, &m_destRect);
+		Animate(MOVERIGHT);
 		break;
 
 	default:
 		break;
 	}
+
+	GameObject::Update();
 }
 
-void Player::Render()
+void Player::Animate(PlayerStates state)
 {
-	SDL_RenderCopy(m_renderer, m_listOfTextures[0], &m_imageDictionary[0].first, &m_destRect);
+	int width, height;
+
+	SDL_QueryTexture(m_listOfTextures[state], NULL, NULL, &width, &height);
+
+	m_sourceRect.x = m_sourceRect.w * (int)((SDL_GetTicks() / m_animationSpeed) % (width / m_sourceRect.w));
 }
 

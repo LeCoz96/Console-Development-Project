@@ -1,5 +1,6 @@
 #include"MovingObject.h"
 #include"LevelRenderer.h"
+#include "Timer.h"
 
 MovingObject::MovingObject(int x, int y, SDL_Renderer* renderer, LevelRenderer* level, int speed)
 	: GameObject{ x, y, renderer, level }, m_moveSpeed{ speed }
@@ -8,7 +9,8 @@ MovingObject::MovingObject(int x, int y, SDL_Renderer* renderer, LevelRenderer* 
 
 void MovingObject::Left()
 {
-	int x = m_xPos - m_moveSpeed;
+	int x = m_xPos - (m_moveSpeed * Timer::GetInstance()->GetDeltaTime());
+
 	if (!m_level->IsWall(x, m_yPos) &&
 		!m_level->IsWall(x, (m_yPos + m_blockSize - 1)))
 	{
@@ -18,7 +20,8 @@ void MovingObject::Left()
 
 void MovingObject::Right()
 {
-	int x = m_xPos + m_moveSpeed;
+	int x = m_xPos + (m_moveSpeed * Timer::GetInstance()->GetDeltaTime());
+
 	if (!m_level->IsWall((x + m_blockSize - 1), m_yPos) &&
 		!m_level->IsWall((x + m_blockSize - 1), (m_yPos + m_blockSize - 1)))
 	{
@@ -28,7 +31,8 @@ void MovingObject::Right()
 
 void MovingObject::Up()
 {
-	int y = m_yPos - m_moveSpeed;
+	int y = m_yPos - (m_moveSpeed * Timer::GetInstance()->GetDeltaTime());
+
 	if (!m_level->IsWall(m_xPos, y) &&
 		!m_level->IsWall(m_xPos + (m_blockSize - 1), y))
 	{
@@ -38,7 +42,8 @@ void MovingObject::Up()
 
 void MovingObject::Down()
 {
-	int y = m_yPos + m_moveSpeed;
+	int y = m_yPos + (m_moveSpeed * Timer::GetInstance()->GetDeltaTime());
+
 	if (!m_level->IsWall(m_xPos, (y + m_blockSize - 1)) &&
 		!m_level->IsWall((m_xPos + m_blockSize - 1), (y + m_blockSize - 1)))
 	{

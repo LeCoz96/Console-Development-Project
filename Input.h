@@ -3,7 +3,7 @@
 #include<SDL_gamecontroller.h>
 #include<iostream>
 
-enum Buttons{UP, DOWN, LEFT, RIGHT, A, B, LEFTSHOULDER, SIZE};
+enum Buttons{UP, DOWN, LEFT, RIGHT, LEFTSHOULDER, X, Y, B, SIZE};
 
 class Input
 {

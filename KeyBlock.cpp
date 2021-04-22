@@ -15,5 +15,5 @@ void KeyBlock::Render()
 
 bool KeyBlock::HasEnoughKeys(Player* player)
 {
-	return player->GetKeys() > 0;
+	return player->HasKey();
 }

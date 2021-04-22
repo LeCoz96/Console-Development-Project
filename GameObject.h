@@ -22,8 +22,6 @@ public:
 	bool Collision(GameObject* object);
 	virtual void Update();
 
-	virtual void Animate();
-
 protected:
 	SDL_Renderer* m_renderer{ nullptr };
 	SDL_Texture* m_texture{ nullptr };

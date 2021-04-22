@@ -82,16 +82,20 @@ void Input::Update()
 				m_buttonsPressed[RIGHT] = true;
 				break;
 
-			case SDL_CONTROLLER_BUTTON_A:
-				m_buttonsPressed[A] = true;
+			case SDL_CONTROLLER_BUTTON_LEFTSHOULDER:
+				m_buttonsPressed[LEFTSHOULDER] = true;
+				break;
+
+			case SDL_CONTROLLER_BUTTON_X:
+				m_buttonsPressed[X] = true;
+				break;
+
+			case SDL_CONTROLLER_BUTTON_Y:
+				m_buttonsPressed[Y] = true;
 				break;
 
 			case SDL_CONTROLLER_BUTTON_B:
 				m_buttonsPressed[B] = true;
-				break;
-
-			case SDL_CONTROLLER_BUTTON_LEFTSHOULDER:
-				m_buttonsPressed[LEFTSHOULDER] = true;
 				break;
 			}
 		}
@@ -116,16 +120,20 @@ void Input::Update()
 				m_buttonsPressed[RIGHT] = false;
 				break;
 
-			case SDL_CONTROLLER_BUTTON_A:
-				m_buttonsPressed[A] = false;
+			case SDL_CONTROLLER_BUTTON_LEFTSHOULDER:
+				m_buttonsPressed[LEFTSHOULDER] = false;
+				break;
+
+			case SDL_CONTROLLER_BUTTON_X:
+				m_buttonsPressed[X] = false;
+				break;
+
+			case SDL_CONTROLLER_BUTTON_Y:
+				m_buttonsPressed[Y] = false;
 				break;
 
 			case SDL_CONTROLLER_BUTTON_B:
 				m_buttonsPressed[B] = false;
-				break;
-
-			case SDL_CONTROLLER_BUTTON_LEFTSHOULDER:
-				m_buttonsPressed[LEFTSHOULDER] = false;
 				break;
 			}
 		}
