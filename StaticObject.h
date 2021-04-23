@@ -6,6 +6,5 @@ class StaticObject :
 public:
     StaticObject(int x, int y, SDL_Renderer* renderer, LevelRenderer* level);
     ~StaticObject() = default;
-    void Update()override;
 };
 

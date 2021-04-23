@@ -2,9 +2,9 @@
 
 UI::UI()
 {
-	TTF_Init();
+	TTF_Init(); // Initiliase TTF
 
-	m_UIFont = TTF_OpenFont("Assets/Text/DejaVuSans.ttf", 25);
+	m_UIFont = TTF_OpenFont("Assets/Text/DejaVuSans.ttf", 25); // Use the string location to find the font
 }
 
 UI::~UI()

@@ -16,7 +16,7 @@ Renderer::Renderer()
 	m_window = SDL_CreateWindow
 	(
 		"Game Window",
-		SDL_WINDOWPOS_CENTERED_DISPLAY(1),
+		SDL_WINDOWPOS_CENTERED_DISPLAY(1), // Centre to the screen chosen using the index in the parameter
 		SDL_WINDOWPOS_CENTERED_DISPLAY(1),
 		800,
 		800,
