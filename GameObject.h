@@ -38,4 +38,5 @@ protected:
 	std::vector<SDL_Texture*> m_listOfTextures;
 	std::vector<std::pair<SDL_Rect, int>> m_imageDictionary;
 
+
 };

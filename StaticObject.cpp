@@ -4,3 +4,4 @@ StaticObject::StaticObject(int x, int y, SDL_Renderer* renderer, LevelRenderer* 
 	: GameObject{ x, y, renderer, level }
 {
 }
+

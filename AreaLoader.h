@@ -8,7 +8,8 @@ enum Areas
 {
 	Area01,
 	Area02,
-	Area03
+	Area03,
+	TotalAreas
 };
 
 

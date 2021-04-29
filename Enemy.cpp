@@ -5,13 +5,13 @@ Enemy::Enemy(int x, int y, SDL_Renderer* renderer, LevelRenderer* level, int spe
 	: MovingObject{ x, y, renderer, level, speed }
 {
 	m_currentTimer = 0;
-	m_jumpInterval = 200;
-	m_landInterval = 60;
+	m_jumpInterval = 20;
+	m_landInterval = 15;
 
 	m_listOfEnemyTexture.push_back(Image::GetTexture("Assets/Enemy/RedBlob01.png", renderer));
 	m_listOfEnemyTexture.push_back(Image::GetTexture("Assets/Enemy/RedBlob02.png", renderer));
 	m_listOfEnemyTexture.push_back(Image::GetTexture("Assets/Enemy/RedBlob03.png", renderer));
-	m_listOfEnemyTexture.push_back(Image::GetTexture("Assets/Enemy/RedBlob04.png", renderer));
+	m_listOfEnemyTexture.push_back(Image::GetTexture("Assets/Enemy/RedBlob04.png", renderer)); // Retrieve the images of the enemy individually so i can manually manipulate them 
 }
 
 void Enemy::Patrol()
@@ -60,13 +60,13 @@ void Enemy::Update()
 	m_destRect.y = m_yPos;
 }
 
-void Enemy::MoveInRandomDirection()
+void Enemy::MoveInRandomDirection() // The directions have been made so random that even though the enemies will move at the same time they will be in random directions
 {
-	std::random_device rd;	// Get random number
-	std::mt19937 gen(rd());	// 
-	std::uniform_int_distribution<> distr(0, 3);
+	std::random_device rd;	// Generage random seed
+	std::mt19937 gen(rd());	// Get a random number from the random seed
+	std::uniform_int_distribution<> distr(0, 3); // chose a random number from between the parameters
 
-	switch (distr(gen))
+	switch (distr(gen)) // Chose a random number between the parameters from the random seed
 	{
 	case 0:
 		Up();

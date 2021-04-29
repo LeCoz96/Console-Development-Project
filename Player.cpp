@@ -74,7 +74,7 @@ int Player::GetScore()
 	return m_score;
 }
 
-void Player::GetPlayerInput()
+void Player::GetPlayerInput() // Get players input and either change their state for the animations state machine or change the FPS
 {
 	m_input->Update();
 
@@ -114,6 +114,11 @@ void Player::GetPlayerInput()
 	{
 		m_state = IDLE;
 	}
+}
+
+float Player::GetChosenFPS()
+{
+	return m_chosenFPS;
 }
 
 void Player::FPS30()
@@ -179,7 +184,7 @@ void Player::Update()
 		break;
 	}
 
-	GameObject::Update();
+	GameObject::Update(); // Update destination rectangles
 }
 
 void Player::Animate(PlayerStates state)

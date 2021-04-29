@@ -15,5 +15,6 @@ public:
    
 protected:
     int m_moveSpeed;
+
 };
 

@@ -101,13 +101,13 @@ void LevelRenderer::NextArea()
 {
 	++m_levelToLoad;
 
-	if (m_levelToLoad >= 3)
+	if (m_levelToLoad >= Areas::TotalAreas)
 	{
 		m_player->m_playerFinishedGame = true;
 	}
 	else
 	{
-		m_levelLayout = m_load->LoadArea(static_cast<Areas>(m_levelToLoad));
+		m_levelLayout = m_load->LoadArea(static_cast<Areas>(m_levelToLoad)); // Load area in the Areas enum to the value of the level to load
 
 		RenderLevel();
 	}
@@ -115,7 +115,7 @@ void LevelRenderer::NextArea()
 
 void LevelRenderer::SetPlayer(Player* player)
 {
-	m_player = player;
+	m_player = player; // Set the values of the player so the renderer can check the players position to allow access where there is a key block if they have enough keys (See IsWall)
 }
 
 bool LevelRenderer::IsWall(int x, int y)

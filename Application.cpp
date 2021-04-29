@@ -39,11 +39,9 @@ void Application::Run()
 
 	mp_sounds->PlayMusicTrack(0, 1);
 
-	Timer::GetInstance()->Tick();
+	mp_renderer->Update(); // Renderer Update stores the game loop
 
-	mp_renderer->Update();
-
-	file.close();
+	file.close(); //Close the file opened to store the console output in Memory Manager
 
 	mp_renderer->Destroy();
 	Destroy();

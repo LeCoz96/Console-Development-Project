@@ -16,7 +16,7 @@ class Player :
 	public MovingObject
 {
 public:
-	Player(int x, int y, SDL_Renderer* renderer, LevelRenderer* level, int speed = 110);
+	Player(int x, int y, SDL_Renderer* renderer, LevelRenderer* level, int speed = 150);
 	~Player();
 
 	void TakeDamage();
@@ -29,9 +29,8 @@ public:
 	int GetScore();
 
 	void GetPlayerInput();
-	void FPS30();
-	void FPS60();
-	void FPS120();
+
+	float GetChosenFPS();
 
 	bool PlayerFinishedGame();
 	bool PlayerIsDead();
@@ -65,5 +64,10 @@ private:
 	bool m_playerIsDead{ false };
 
 	int m_fpsChange{ 0 };
+
+	void FPS30();
+	void FPS60();
+	void FPS120();
+
 };
 

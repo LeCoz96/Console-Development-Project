@@ -12,7 +12,7 @@ AreaLoader::~AreaLoader()
 	m_areas.clear();
 }
 
-std::vector<std::string> AreaLoader::LoadArea(Areas area)
+std::vector<std::string> AreaLoader::LoadArea(Areas area) // store all the data recived into the vector layout and return ready for the renderer
 {
 	std::vector<std::string> layout;
 	std::string line;

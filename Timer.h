@@ -1,29 +1,33 @@
-#include <SDL.h>
 #include <chrono>
 #pragma once
 
 class Timer
 {
 public:
+
 	void Tick();
-	inline float GetDeltaTime() { return m_deltaTime; }
-	inline static Timer* GetInstance() { return s_Instance = (s_Instance != nullptr)? s_Instance : new Timer (); }
+	static Timer* GetInstance() { return s_instance = (s_instance != nullptr) ? s_instance : new Timer(); }
 
 	void CalculateFPS();
-	inline float GetCurrentFPS() { return m_currentFPS; }
-	inline float GetRecentFPS() { return m_recentFPS; }
-	inline double GetTimer() { return m_timer; }
+
+	inline float GetDeltaTime() { return m_deltaTime; }
+	inline float GetCurrentFPS() { return m_currentFrameAverage; }
+	inline float GetLastFPS() { return m_recentFrame; }
+
+	inline double GetElapsedTime() { return m_interval; }
+
 
 private:
 	Timer() {}
-	static Timer* s_Instance;
-	float m_deltaTime;
-	double m_timer;
-	float m_recentFPS;
-	float m_currentFPS;
 
-	std::chrono::time_point<std::chrono::high_resolution_clock> m_currentFPSTimer;
-	std::chrono::time_point<std::chrono::high_resolution_clock> m_recentFPSTimer;
+	static Timer* s_instance;
 
+	float m_deltaTime{ 0.0f };
+	float m_currentFrameAverage{ 0.0f };
+	float m_recentFrame{ 0.0f };
+	double m_interval{ 0.0f };
+
+	std::chrono::time_point<std::chrono::high_resolution_clock> m_frameTime;
+	std::chrono::time_point<std::chrono::high_resolution_clock> m_lastFrameTime;
 };
 

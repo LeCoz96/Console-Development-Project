@@ -35,7 +35,7 @@ Renderer::Renderer()
 	(
 		m_window,			// link the renderer to the window
 		-1,					// index rendering driver (don't worry about this)
-		SDL_RENDERER_ACCELERATED
+		SDL_RENDERER_ACCELERATED || SDL_RENDERER_PRESENTVSYNC
 		//0					// renderer behavior flags (ignore for now)
 	);
 
@@ -97,7 +97,7 @@ void Renderer::Update()
 			StaticObjectUpdate();
 		}
 
-		if (Timer::GetInstance()->GetDeltaTime() >= (1.0f / m_player->m_chosenFPS))
+		if (Timer::GetInstance()->GetDeltaTime() >= (1 / m_player->GetChosenFPS()))
 		{
 			m_player->GetPlayerInput();
 
@@ -209,7 +209,7 @@ void Renderer::ClearAndPresent()
 
 	m_UI->UpdateUI("Lives: " + std::to_string(m_player->GetLives()), 10, 1, m_renderer, m_UI->m_UIFont, { 255, 255, 255 });
 	m_UI->UpdateUI("Score: " + std::to_string(m_player->GetScore()), 140, 1, m_renderer, m_UI->m_UIFont, { 255, 255, 255 });
-	m_UI->UpdateUI("FPS: " + std::to_string(Timer::GetInstance()->GetRecentFPS()), 5, 770, m_renderer, m_UI->m_UIFont, { 255, 255, 255 });
+	m_UI->UpdateUI("FPS: " + std::to_string((int)Timer::GetInstance()->GetLastFPS()), 5, 770, m_renderer, m_UI->m_UIFont, { 255, 255, 255 });
 
 	SDL_RenderPresent(m_renderer);
 }

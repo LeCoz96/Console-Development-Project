@@ -69,12 +69,3 @@ void Audio::PlaySFX(int id, int loopNumber, int channel)
         Mix_PlayChannel(channel, m_sfx[id], loopNumber);
     }
 }
-
-void Audio::FadeMusicTrack(int id, int loopNumber, int fadeLength)
-{
-    if (Mix_PlayingMusic())
-    {
-        Mix_FadeOutMusic(fadeLength);
-    }
-    Mix_FadeInMusic(m_music[id], loopNumber, fadeLength);
-}
