@@ -12,7 +12,6 @@ public:
     
     void Patrol();
     void Render()override;
-    void Update()override;
     void MoveInRandomDirection();
 
 private:

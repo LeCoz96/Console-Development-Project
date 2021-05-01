@@ -54,19 +54,13 @@ void Enemy::Render()
 	Image::PrintImage(m_renderer, m_listOfEnemyTexture[m_frame], m_sourceRect, m_destRect);
 }
 
-void Enemy::Update()
-{
-	m_destRect.x = m_xPos;
-	m_destRect.y = m_yPos;
-}
-
 void Enemy::MoveInRandomDirection() // The directions have been made so random that even though the enemies will move at the same time they will be in random directions
 {
-	std::random_device rd;	// Generage random seed
-	std::mt19937 gen(rd());	// Get a random number from the random seed
-	std::uniform_int_distribution<> distr(0, 3); // chose a random number from between the parameters
+	std::random_device randomValue;	// Generage random value
+	std::mt19937 randomSeed(randomValue());	// Get a random number from the random seed
+	std::uniform_int_distribution<> chosenRandomNumber(0, 3); // chose a random number from between the parameters
 
-	switch (distr(gen)) // Chose a random number between the parameters from the random seed
+	switch (chosenRandomNumber(randomSeed)) // Chose a random number between the parameters from the random seed
 	{
 	case 0:
 		Up();

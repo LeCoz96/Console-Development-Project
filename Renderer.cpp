@@ -316,7 +316,7 @@ void Renderer::ConstructLevel02Objects()
 	m_listOfJewelBlue.push_back(new JewelBlue(32, 192, m_renderer, m_level));
 	m_listOfJewelBlue.push_back(new JewelBlue(160, 288, m_renderer, m_level));
 	m_listOfJewelBlue.push_back(new JewelBlue(160, 96, m_renderer, m_level));
-	m_listOfJewelBlue.push_back(new JewelBlue(640, 128, m_renderer, m_level));
+	m_listOfJewelBlue.push_back(new JewelBlue(640, 32, m_renderer, m_level));
 	m_listOfJewelBlue.push_back(new JewelBlue(448, 352, m_renderer, m_level));
 	m_listOfJewelBlue.push_back(new JewelBlue(480, 448, m_renderer, m_level));
 }
