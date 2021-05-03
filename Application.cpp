@@ -8,6 +8,7 @@
 
 #ifdef _DEBUG
 #include"MemoryManager.h"
+
 #endif
 
 Application::Application()
@@ -41,7 +42,9 @@ void Application::Run()
 
 	mp_renderer->Update(); // Renderer Update stores the game loop
 
+#ifdef _DEBUG
 	file.close(); //Close the file opened to store the console output in Memory Manager
+#endif // _DEBUG
 
 	mp_renderer->Destroy();
 	Destroy();

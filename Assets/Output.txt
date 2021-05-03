@@ -1,6 +1,6 @@
-Size = 72 bytes filename = D:\Desktop\Semester 2\Console Development\AE1 - Project\Application.cpp line = 15
-Total heap allocation = 72 bytes 
-Size = 92 bytes filename = D:\Desktop\Semester 2\Console Development\AE1 - Project\Application.cpp line = 16
-Total heap allocation = 164 bytes 
-Size = 40 bytes filename = D:\Desktop\Semester 2\Console Development\AE1 - Project\Application.cpp line = 17
-Total heap allocation = 204 bytes 
+Size = 80 bytes filename = D:\Desktop\Semester 2\Console Development\AE1 Submission\AE1 - Project\Application.cpp line = 16
+Total heap allocation = 80 bytes 
+Size = 168 bytes filename = D:\Desktop\Semester 2\Console Development\AE1 Submission\AE1 - Project\Application.cpp line = 17
+Total heap allocation = 248 bytes 
+Size = 80 bytes filename = D:\Desktop\Semester 2\Console Development\AE1 Submission\AE1 - Project\Application.cpp line = 18
+Total heap allocation = 328 bytes 
