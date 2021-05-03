@@ -20,15 +20,20 @@ public:
 	~Player();
 
 	void TakeDamage();
-	int GetLives();
 
 	void IncreaseScore(int value);
 	void IncreaseKeys();
 	void DecreaseKeys();
 
-	int GetScore();
+	void Render()override;
+	void Update()override;
+	void Animate(PlayerStates state);
 
 	void GetPlayerInput();
+
+	int GetLives();
+
+	int GetScore();
 
 	float GetChosenFPS();
 
@@ -36,10 +41,6 @@ public:
 	bool PlayerIsDead();
 	
 	bool HasKey();
-
-	void Render()override;
-	void Update()override;
-	void Animate(PlayerStates state);
 
 	bool m_playerFinishedGame{ false };
 

@@ -36,12 +36,12 @@ public:
 	void Destroy();
 
 	void ConstructLevelObjects();
+	void DestructLevelObjects();
 
 	void ConstructLevel01Objects();
 	void ConstructLevel02Objects();
 	void ConstructLevel03Objects();
 
-	void DestructLevelObjects();
 private:
 	SDL_Window* m_window{ nullptr };
 	SDL_Renderer* m_renderer{ nullptr };
@@ -55,16 +55,18 @@ private:
 	JewelBlue* m_jewelBlue{ nullptr };
 
 	Player* m_player{ nullptr };
-	int m_startX, m_startY{ 0 };
 	Enemy* m_enemy{ nullptr };
-
 	UI* m_UI{ nullptr };
 
-	std::vector<JewelBlue*> m_listOfJewelBlue;
+
+	std::vector<JewelBlue*> m_listOfJewel;
 	std::vector<Enemy*> m_listOfEnemy;
+
+
+	int m_startX, m_startY{ 0 };
+	int m_currentLevel{ 0 };
 
 	bool m_updateStaticObject{ true };
 
-	int m_currentLevel{ 0 };
 };
 

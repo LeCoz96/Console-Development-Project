@@ -18,8 +18,9 @@ class AreaLoader
 public:
 	AreaLoader();
 	~AreaLoader();
-
 	std::vector<std::string> LoadArea(Areas area);
+
+private:
 
 	std::vector<std::string> m_areas;
 };

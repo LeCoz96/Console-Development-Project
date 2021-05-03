@@ -130,15 +130,15 @@ void Renderer::CollisionChecks(Player* player)
 		}
 	}
 
-	for (size_t i = 0; i < m_listOfJewelBlue.size(); i++)
+	for (size_t i = 0; i < m_listOfJewel.size(); i++)
 	{
-		if (m_listOfJewelBlue[i]->Collision(player))
+		if (m_listOfJewel[i]->Collision(player))
 		{
-			m_player->IncreaseScore(m_listOfJewelBlue[i]->m_jewelValue);
+			m_player->IncreaseScore(m_listOfJewel[i]->m_jewelValue);
 
-			delete m_listOfJewelBlue[i];
-			m_listOfJewelBlue[i] = nullptr;
-			m_listOfJewelBlue.erase(m_listOfJewelBlue.begin() + i);
+			delete m_listOfJewel[i];
+			m_listOfJewel[i] = nullptr;
+			m_listOfJewel.erase(m_listOfJewel.begin() + i);
 		}
 	}
 
@@ -189,11 +189,11 @@ void Renderer::ClearAndPresent()
 		m_key->Render();
 	}
 
-	if (m_listOfJewelBlue.size() != 0)
+	if (m_listOfJewel.size() != 0)
 	{
-		for (size_t i = 0; i < m_listOfJewelBlue.size(); i++)
+		for (size_t i = 0; i < m_listOfJewel.size(); i++)
 		{
-			m_listOfJewelBlue[i]->Render();
+			m_listOfJewel[i]->Render();
 		}
 	}
 
@@ -221,9 +221,9 @@ void Renderer::StaticObjectUpdate()
 	m_keyBlock->Update();
 	m_key->Update();
 
-	for (size_t i = 0; i < m_listOfJewelBlue.size(); i++)
+	for (size_t i = 0; i < m_listOfJewel.size(); i++)
 	{
-		m_listOfJewelBlue[i]->Update();
+		m_listOfJewel[i]->Update();
 	}
 
 	m_updateStaticObject = false;
@@ -280,16 +280,16 @@ void Renderer::ConstructLevel01Objects()
 	m_listOfEnemy.push_back(new Enemy(192, 512, m_renderer, m_level));
 	m_listOfEnemy.push_back(new Enemy(544, 480, m_renderer, m_level));
 
-	m_listOfJewelBlue.push_back(new JewelBlue(736, 64, m_renderer, m_level));
-	m_listOfJewelBlue.push_back(new JewelBlue(704, 32, m_renderer, m_level));
-	m_listOfJewelBlue.push_back(new JewelBlue(32, 224, m_renderer, m_level));
-	m_listOfJewelBlue.push_back(new JewelBlue(128, 640, m_renderer, m_level));
-	m_listOfJewelBlue.push_back(new JewelBlue(128, 608, m_renderer, m_level));
-	m_listOfJewelBlue.push_back(new JewelBlue(352, 512, m_renderer, m_level));
-	m_listOfJewelBlue.push_back(new JewelBlue(384, 512, m_renderer, m_level));
-	m_listOfJewelBlue.push_back(new JewelBlue(416, 512, m_renderer, m_level));
-	m_listOfJewelBlue.push_back(new JewelBlue(704, 480, m_renderer, m_level));
-	m_listOfJewelBlue.push_back(new JewelBlue(544, 320, m_renderer, m_level));
+	m_listOfJewel.push_back(new JewelBlue(736, 64, m_renderer, m_level));
+	m_listOfJewel.push_back(new JewelBlue(704, 32, m_renderer, m_level));
+	m_listOfJewel.push_back(new JewelBlue(32, 224, m_renderer, m_level));
+	m_listOfJewel.push_back(new JewelBlue(128, 640, m_renderer, m_level));
+	m_listOfJewel.push_back(new JewelBlue(128, 608, m_renderer, m_level));
+	m_listOfJewel.push_back(new JewelBlue(352, 512, m_renderer, m_level));
+	m_listOfJewel.push_back(new JewelBlue(384, 512, m_renderer, m_level));
+	m_listOfJewel.push_back(new JewelBlue(416, 512, m_renderer, m_level));
+	m_listOfJewel.push_back(new JewelBlue(704, 480, m_renderer, m_level));
+	m_listOfJewel.push_back(new JewelBlue(544, 320, m_renderer, m_level));
 }
 
 void Renderer::ConstructLevel02Objects()
@@ -309,16 +309,16 @@ void Renderer::ConstructLevel02Objects()
 	m_listOfEnemy.push_back(new Enemy(224, 608, m_renderer, m_level));
 	m_listOfEnemy.push_back(new Enemy(704, 416, m_renderer, m_level));
 
-	m_listOfJewelBlue.push_back(new JewelBlue(736, 672, m_renderer, m_level));
-	m_listOfJewelBlue.push_back(new JewelBlue(672, 672, m_renderer, m_level));
-	m_listOfJewelBlue.push_back(new JewelBlue(96, 672, m_renderer, m_level));
-	m_listOfJewelBlue.push_back(new JewelBlue(96, 704, m_renderer, m_level));
-	m_listOfJewelBlue.push_back(new JewelBlue(32, 192, m_renderer, m_level));
-	m_listOfJewelBlue.push_back(new JewelBlue(160, 288, m_renderer, m_level));
-	m_listOfJewelBlue.push_back(new JewelBlue(160, 96, m_renderer, m_level));
-	m_listOfJewelBlue.push_back(new JewelBlue(640, 32, m_renderer, m_level));
-	m_listOfJewelBlue.push_back(new JewelBlue(448, 352, m_renderer, m_level));
-	m_listOfJewelBlue.push_back(new JewelBlue(480, 448, m_renderer, m_level));
+	m_listOfJewel.push_back(new JewelBlue(736, 672, m_renderer, m_level));
+	m_listOfJewel.push_back(new JewelBlue(672, 672, m_renderer, m_level));
+	m_listOfJewel.push_back(new JewelBlue(96, 672, m_renderer, m_level));
+	m_listOfJewel.push_back(new JewelBlue(96, 704, m_renderer, m_level));
+	m_listOfJewel.push_back(new JewelBlue(32, 192, m_renderer, m_level));
+	m_listOfJewel.push_back(new JewelBlue(160, 288, m_renderer, m_level));
+	m_listOfJewel.push_back(new JewelBlue(160, 96, m_renderer, m_level));
+	m_listOfJewel.push_back(new JewelBlue(640, 32, m_renderer, m_level));
+	m_listOfJewel.push_back(new JewelBlue(448, 352, m_renderer, m_level));
+	m_listOfJewel.push_back(new JewelBlue(480, 448, m_renderer, m_level));
 }
 
 void Renderer::ConstructLevel03Objects()
@@ -338,21 +338,21 @@ void Renderer::ConstructLevel03Objects()
 	m_listOfEnemy.push_back(new Enemy(64, 544, m_renderer, m_level));
 	m_listOfEnemy.push_back(new Enemy(224, 288, m_renderer, m_level));
 
-	m_listOfJewelBlue.push_back(new JewelBlue(32, 512, m_renderer, m_level));
-	m_listOfJewelBlue.push_back(new JewelBlue(96, 576, m_renderer, m_level));
-	m_listOfJewelBlue.push_back(new JewelBlue(32, 640, m_renderer, m_level));
-	m_listOfJewelBlue.push_back(new JewelBlue(512, 32, m_renderer, m_level));
-	m_listOfJewelBlue.push_back(new JewelBlue(576, 32, m_renderer, m_level));
-	m_listOfJewelBlue.push_back(new JewelBlue(480, 448, m_renderer, m_level));
-	m_listOfJewelBlue.push_back(new JewelBlue(576, 608, m_renderer, m_level));
-	m_listOfJewelBlue.push_back(new JewelBlue(256, 256, m_renderer, m_level));
-	m_listOfJewelBlue.push_back(new JewelBlue(736, 672, m_renderer, m_level));
-	m_listOfJewelBlue.push_back(new JewelBlue(736, 160, m_renderer, m_level));
+	m_listOfJewel.push_back(new JewelBlue(32, 512, m_renderer, m_level));
+	m_listOfJewel.push_back(new JewelBlue(96, 576, m_renderer, m_level));
+	m_listOfJewel.push_back(new JewelBlue(32, 640, m_renderer, m_level));
+	m_listOfJewel.push_back(new JewelBlue(512, 32, m_renderer, m_level));
+	m_listOfJewel.push_back(new JewelBlue(576, 32, m_renderer, m_level));
+	m_listOfJewel.push_back(new JewelBlue(480, 448, m_renderer, m_level));
+	m_listOfJewel.push_back(new JewelBlue(576, 608, m_renderer, m_level));
+	m_listOfJewel.push_back(new JewelBlue(256, 256, m_renderer, m_level));
+	m_listOfJewel.push_back(new JewelBlue(736, 672, m_renderer, m_level));
+	m_listOfJewel.push_back(new JewelBlue(736, 160, m_renderer, m_level));
 }
 
 void Renderer::DestructLevelObjects()
 {
-	m_listOfJewelBlue.clear();
+	m_listOfJewel.clear();
 
 	m_listOfEnemy.clear();
 

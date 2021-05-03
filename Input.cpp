@@ -82,10 +82,6 @@ void Input::Update()
 				m_buttonsPressed[RIGHT] = true;
 				break;
 
-			case SDL_CONTROLLER_BUTTON_LEFTSHOULDER:
-				m_buttonsPressed[LEFTSHOULDER] = true;
-				break;
-
 			case SDL_CONTROLLER_BUTTON_X:
 				m_buttonsPressed[X] = true;
 				break;
@@ -118,10 +114,6 @@ void Input::Update()
 
 			case SDL_CONTROLLER_BUTTON_DPAD_RIGHT:
 				m_buttonsPressed[RIGHT] = false;
-				break;
-
-			case SDL_CONTROLLER_BUTTON_LEFTSHOULDER:
-				m_buttonsPressed[LEFTSHOULDER] = false;
 				break;
 
 			case SDL_CONTROLLER_BUTTON_X:
